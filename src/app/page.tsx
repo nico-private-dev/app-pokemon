@@ -1,24 +1,39 @@
-import { useState } from "react";
-import SearchForm from "@/components/SearchForm";
-import PokemonList from "@/components/PokemonList";
+"use client";
+import { useEffect, useState } from "react";
+import PokemonList from "@/app/components/PokemonList";
+import SearchForm from "@/app/components/SearchForm";
+import { fetchPokemons } from "@/lib/pokemon";
+import { ProcessedPokemon } from "@/types";
 
-export default function Home() {
-  const [pokemonData, setPokemonData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+export default function PokemonPage() {
+  const [pokemons, setPokemons] = useState<ProcessedPokemon[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = async (name) => {
-    setLoading(true);
-    setError("");
-    try {
-      const response = await fetch(`/api/pokemon?name=${name}`);
-      if (!response.ok) {
-        throw new Error("Pokémon not found");
+  useEffect(() => {
+    const loadPokemons = async () => {
+      try {
+        const data = await fetchPokemons();
+        setPokemons(data);
+      } catch (err) {
+        setError("Failed to load Pokémon.");
+      } finally {
+        setLoading(false);
       }
-      const data = await response.json();
-      setPokemonData([data]);
+    };
+
+    loadPokemons();
+  }, []);
+
+  const handleSearch = async (name: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await fetchPokemons(name);
+      setPokemons(data);
     } catch (err) {
-      setError(err.message);
+      setError("Pokémon not found. Please check the name.");
+      setPokemons([]);
     } finally {
       setLoading(false);
     }
@@ -26,11 +41,15 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center">Pokémon Search</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">Pokémon Search</h1>
       <SearchForm onSearch={handleSearch} />
-      {loading && <p className="text-center">Loading...</p>}
-      {error && <p className="text-red-500 text-center">{error}</p>}
-      <PokemonList pokemon={pokemonData} />
+      {loading && (
+        <div className="text-center p-4">
+          <p>Loading Pokémon data...</p>
+        </div>
+      )}
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+      {!loading && !error && <PokemonList pokemons={pokemons} />}
     </div>
   );
 }

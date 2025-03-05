@@ -21,3 +21,15 @@ export interface PokemonSprites {
   front_shiny: string;
   back_shiny: string;
 }
+
+export interface PokemonListItem {
+  name: string;
+  url: string;
+}
+
+export interface ProcessedPokemon {
+  id: number;
+  name: string;
+  image: string;
+  types: string[];
+}
