@@ -40,16 +40,21 @@ export default function PokemonPage() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4 text-center">Pokémon Search</h1>
-      <SearchForm onSearch={handleSearch} />
+    <div className="container relative rounded-3xl my-8 mx-auto pb-4">
+      <div className="poligone-effect absolute inset-0 bg-[#DC0A2D]"></div>
+      <div className="w-[70%] bg-white rounded-ss-3xl">
+        <h1 className="text-3xl font-bold mb-4 text-center text-white">Pokémon Search</h1>
+        <SearchForm onSearch={handleSearch} />
+      </div>
       {loading && (
         <div className="text-center p-4">
           <p>Recherche en cours...</p>
         </div>
       )}
-      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-      {!loading && !error && <PokemonList pokemons={pokemons} />}
+      <div className="px-16">
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {!loading && !error && <PokemonList pokemons={pokemons} />}
+      </div>
     </div>
   );
 }

@@ -15,7 +15,7 @@ export async function GET(request: Request) {
       const data = await response.json();
       return NextResponse.json(data);
     } else {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1300');
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10');
       
       if (!response.ok) {
         return NextResponse.json({ error: "Failed to fetch Pokémon list" }, { status: 500 });

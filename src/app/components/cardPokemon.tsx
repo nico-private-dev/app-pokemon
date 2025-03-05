@@ -11,8 +11,8 @@ export default function CardPokemon({ pokemon }: CardPokemonProps) {
   };
 
   return (
-    <div className="relative rounded-lg shadow-lg hover:shadow-xl transition-shadow p-4">
-        <div className={`border-circle-effect absolute bottom-0 left-0 right-0 top-0 z-0 ${getBackgroundColor(pokemon.types)}`}></div>
+    <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow p-4">
+        <div className={`border-circle-effect rounded-lg absolute bottom-0 left-0 right-0 top-0 z-0 ${getBackgroundColor(pokemon.types)}`}></div>
       <div className="aspect-square z-1 relative">
             <img
             src={pokemon.image}
