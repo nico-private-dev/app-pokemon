@@ -1,7 +1,6 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   background: var(--background);
@@ -12,10 +11,8 @@ body {
   box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+.border-circle-effect {
+  clip-path: ellipse(100% 50% at 50% 100%);
 }
 
 @media (prefers-color-scheme: dark) {

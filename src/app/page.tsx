@@ -45,7 +45,7 @@ export default function PokemonPage() {
       <SearchForm onSearch={handleSearch} />
       {loading && (
         <div className="text-center p-4">
-          <p>Loading Pokémon data...</p>
+          <p>Recherche en cours...</p>
         </div>
       )}
       {error && <p className="text-red-500 text-center mb-4">{error}</p>}
