@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <title>Pokémon Logo</title>
+  <circle cx="100" cy="100" r="80" fill="#ffcc00" />
+  <path d="M50 100 L150 100 L100 50 Z" fill="#ff0000" />
+  <path d="M50 100 L150 100 L100 150 Z" fill="#00ff00" />
+  <text x="50%" y="50%" text-anchor="middle" fill="#000" font-size="24" font-family="Arial" dy=".3em">Pokémon</text>
+</svg>
