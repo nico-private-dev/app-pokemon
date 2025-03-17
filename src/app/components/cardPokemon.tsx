@@ -13,14 +13,14 @@ export default function CardPokemon({ pokemon }: CardPokemonProps) {
   return (
     <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow p-4">
         <div className={`border-circle-effect rounded-lg absolute bottom-0 left-0 right-0 top-0 z-0 ${getBackgroundColor(pokemon.types)}`}></div>
-      <div className="aspect-square z-1 relative">
+      <div className="aspect-square z-10 relative">
             <img
             src={pokemon.image}
             alt={pokemon.name}
             className="w-full h-full object-contain"
             />
       </div>
-      <div className="mt-4 z-1 relative">
+      <div className="mt-4 z-10 relative">
             <h2 className="text-xl font-bold capitalize text-center text-white">{pokemon.name}</h2>
             <div className="flex gap-2 justify-center mt-2">
             {pokemon.types.map((type) => (

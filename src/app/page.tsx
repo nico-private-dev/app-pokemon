@@ -4,6 +4,7 @@ import PokemonList from "@/app/components/PokemonList";
 import SearchForm from "@/app/components/SearchForm";
 import { fetchPokemons } from "@/lib/pokemon";
 import { ProcessedPokemon } from "@/types";
+import Image from "next/image";
 
 export default function PokemonPage() {
   const [pokemons, setPokemons] = useState<ProcessedPokemon[]>([]);
@@ -40,21 +41,27 @@ export default function PokemonPage() {
   };
 
   return (
-    <div className="container relative rounded-3xl my-8 mx-auto pb-4">
-      <div className="poligone-effect absolute inset-0 bg-[#DC0A2D]"></div>
-      <div className="w-[70%] bg-white rounded-ss-3xl">
-        <h1 className="text-3xl font-bold mb-4 text-center text-white">Pokémon Search</h1>
-        <SearchForm onSearch={handleSearch} />
-      </div>
-      {loading && (
-        <div className="text-center p-4">
-          <p>Recherche en cours...</p>
+    <>
+      <div className="container my-8 mx-auto py-4">
+        <div className="flex items-center justify-between mb-6">
+          <Image src="/assets/logo-pokedex.svg" alt="Pokedex" width={200} height={200} />
+          <h1 className="hidden md:block text-3xl font-bold text-center text-white">Pokémon Search</h1>
         </div>
-      )}
-      <div className="px-16">
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-        {!loading && !error && <PokemonList pokemons={pokemons} />}
+        <div className="w-full mt-4">
+          <SearchForm onSearch={handleSearch} />
+        </div>
       </div>
-    </div>
+      <div className="container relative rounded-3xl mx-auto py-4 bg-white">
+        {loading && (
+          <div className="text-center p-4">
+            <p>Recherche en cours...</p>
+          </div>
+        )}
+        <div className="px-4">
+          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+          {!loading && !error && <PokemonList pokemons={pokemons} />}
+        </div>
+      </div>
+    </>
   );
 }

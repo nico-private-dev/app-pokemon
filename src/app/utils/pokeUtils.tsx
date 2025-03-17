@@ -19,6 +19,7 @@ async function getPokemonDetails(nameOrUrl: string): Promise<ProcessedPokemon> {
     const pokemon: Pokemon = await response.json();
     
     return {
+      id: pokemon.id,
       name: pokemon.name,
       image: pokemon.sprites.front_default,
       types: pokemon.types.map(typeInfo => typeInfo.type.name)

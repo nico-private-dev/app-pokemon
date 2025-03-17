@@ -16,7 +16,7 @@ export async function fetchPokemons(search?: string): Promise<ProcessedPokemon[]
       }];
     }
 
-    const response = await fetch(`${BASE_URL}/pokemon?limit=10`);
+    const response = await fetch(`${BASE_URL}/pokemon?limit=200`);
     const data = await response.json();
     
     const pokemonDetails = await Promise.all(
